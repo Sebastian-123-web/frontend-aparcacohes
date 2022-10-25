@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parqueadero</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="icon/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="d-flex">
+        <nav class="menu">
+            <div>
+                <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+                <a class="activo"><i class="fa-solid fa-square-parking"></i> Parqueadero</a>
+                <a href="#"><i class="fa-solid fa-user"></i> Usuario</a>
+                <a href="#"><i class="fa-solid fa-car"></i> Vehículo</a>
+                <a href="#"><i class="fa-solid fa-chart-column"></i> Estadístisca</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+            </div>
+        </nav>
+        <main>
+            <div class="header">
+                <input type="text" placeholder="Buscar vehiculo, cliente, matricula...">
+                <div><i class="fa-solid fa-bell"></i><i class="fa-solid fa-sun"></i></div>
+            </div>
+            <div class="listado-parqueado">
+                <div class="lista">
+                    <h3>Fuera</h3>
+                    <div class="listado" id="listado-false">
+                        
+                    </div>
+                </div>
+                <div class="botones">
+                    <a href="#agregarregistro"><i class="fa-solid fa-plus"></i></a>
+                    <button id="true" class="true botonAccion" disabled><i class="fa-solid fa-arrow-right"></i></button>
+                    <button id="false" class="false botonAccion" disabled><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="delete" class="delete botonAccion" disabled><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="lista">
+                    <h3>Dentro</h3>
+                    <div class="listado" id="listado-true">
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    
+    <div id="agregarregistro" class="ventana-agregar">
+        <div class="modal-contenido">
+            <div class="cabeza-formulario">
+                <h2>Agregar</h2>
+                <a href="#" class="false" id="cerrar-form"><i class="fa-solid fa-x"></i></a>
+            </div>
+            <form id="formularioAgr">
+                <input type="text" name="estado" value="false" style="display: none;">
+                <input type="text" name="nombre" placeholder="Cliente" required>
+                <input type="text" name="placa" placeholder="Matricula" required>
+                <input type="text" name="modelo" placeholder="Marca" required>
+                <select name="tipo" required>
+                    <option value="1">Auto</option>
+                    <option value="2">Moto</option>
+                    <option value="3">Mototaxi</option>
+                    <option value="4">Combi</option>
+                </select>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
