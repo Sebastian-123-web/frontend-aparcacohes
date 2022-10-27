@@ -1,20 +1,7 @@
-//OBTENGO TODOS LOS VEHICULOS
-/*const info = async() => {
- await fetch('http://localhost:4000/api/v1/consultas')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        data.forEach((consultas) => {
-            const listadoFalse = document.getElementById('listado-false');
-            const listadoTrue = document.getElementById('listado-true');
-            consultas.estado === 'false' ? listadoFalse.appendChild(datosVehiculoUsuario(consultas)) : listadoTrue.appendChild(datosVehiculoUsuario(consultas));
-        });
-        clicRegistro();
-    });
-}*/
 
+//OBTENGO TODOS LOS VEHICULOS
 let pullDato = '';
-const mostrarDatos = async() => {
+const obtenerVehiculoUsuario = async() => {
     try {
         const dato = await axios.get('http://localhost:4000/api/v1/consultas');
         pullDato = await dato.data;
@@ -24,6 +11,7 @@ const mostrarDatos = async() => {
     }
 }
 
+//DIVIDE EN FUERA Y DENTRO A LOS REGISTROS
 const mostrarVehiculoUsuario = (d) => {
     d.forEach((c) => {
         const listadoFalse = document.getElementById('listado-false');
@@ -33,7 +21,8 @@ const mostrarVehiculoUsuario = (d) => {
     clicRegistro();
 }
 
-mostrarDatos();
+//SE MUESTRA EN LA APP
+obtenerVehiculoUsuario();
 
 //RECUADRO DE VEHICULOS Y USUARIO
 const datosVehiculoUsuario = (datosVehiculoUsuario) => {
@@ -47,9 +36,6 @@ const datosVehiculoUsuario = (datosVehiculoUsuario) => {
     `;
     return registro;
 }
-
-//SE MUESTRA EN LA APP
-//info();
 
 //GUARDAR UN USUARIO Y VEHICULO EN LA DB
 document.getElementById('formularioAgr').addEventListener('submit', async(e)=>{
@@ -82,15 +68,24 @@ document.getElementById('formularioAgr').addEventListener('submit', async(e)=>{
 const clicRegistro = () =>{
     document.querySelectorAll('.registro').forEach(reg => {
         reg.addEventListener('click', e => {
+
+            if(localStorage.getItem('idVehiculo')){
+                //console.log(localStorage.getItem('idVehiculo'))
+                console.log(document.querySelector(`div[idVehiculo=90]`));
+            }
+
+            //localStorage.getItem('idVehiculo') ? localStorage.removeItem('idVehiculo') : console.log('no hay variable: se crea')
+
             const tyf = e.target.firstElementChild.firstChild.className == 'true' ? 'false' : 'true'
+
+            e.target.style.backgroundColor = "#0F0F10";
 
             let activarB = document.querySelector(`#${ tyf }`);
             let deleteB = document.querySelector("#delete");
             activarB.removeAttribute("disabled");
             deleteB.removeAttribute("disabled");
 
-            const idregistro = e.target.getAttribute("idregistro");
-            localStorage.setItem('idVehiculo', idregistro);
+            localStorage.setItem('idVehiculo', e.target.getAttribute("idregistro"));
         })
     })
 }
