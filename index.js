@@ -27,7 +27,8 @@ obtenerVehiculoUsuario();
 //RECUADRO DE VEHICULOS Y USUARIO
 const datosVehiculoUsuario = (datosVehiculoUsuario) => {
     const registro = document.createElement('div');
-    registro.setAttribute('idregistro', datosVehiculoUsuario.id_vehiculo)
+    registro.setAttribute('id', datosVehiculoUsuario.id_vehiculo);
+    registro.setAttribute('idregistro', datosVehiculoUsuario.id_vehiculo);
     registro.className = 'registro';
     registro.innerHTML = `
         <p><span class="${ datosVehiculoUsuario.estado }"><i class="fa-solid fa-car"></i></span>${ datosVehiculoUsuario.placa }</p>
@@ -67,15 +68,15 @@ document.getElementById('formularioAgr').addEventListener('submit', async(e)=>{
 //OBTEMOS EL ID DEL VEHICULO
 const clicRegistro = () =>{
     document.querySelectorAll('.registro').forEach(reg => {
+        
         reg.addEventListener('click', e => {
-
             if(localStorage.getItem('idVehiculo')){
-                //console.log(localStorage.getItem('idVehiculo'))
-                console.log(document.querySelector(`div[idVehiculo=90]`));
+                console.log(localStorage.getItem('idVehiculo'));
+                document.getElementById(localStorage.getItem('idVehiculo')).style.backgroundColor = '#18191A';
             }
-
+            //sebas marica
             //localStorage.getItem('idVehiculo') ? localStorage.removeItem('idVehiculo') : console.log('no hay variable: se crea')
-
+            
             const tyf = e.target.firstElementChild.firstChild.className == 'true' ? 'false' : 'true'
 
             e.target.style.backgroundColor = "#0F0F10";
@@ -86,6 +87,8 @@ const clicRegistro = () =>{
             deleteB.removeAttribute("disabled");
 
             localStorage.setItem('idVehiculo', e.target.getAttribute("idregistro"));
+            console.log(localStorage.getItem('idVehiculo'));
+            console.log('--------------');
         })
     })
 }
