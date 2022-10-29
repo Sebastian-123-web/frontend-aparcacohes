@@ -74,7 +74,7 @@ const clicRegistro = () =>{
                 console.log(localStorage.getItem('idVehiculo'));
                 document.getElementById(localStorage.getItem('idVehiculo')).style.backgroundColor = '#18191A';
             }
-            //sebas marica
+            
             //localStorage.getItem('idVehiculo') ? localStorage.removeItem('idVehiculo') : console.log('no hay variable: se crea')
             
             const tyf = e.target.firstElementChild.firstChild.className == 'true' ? 'false' : 'true'
